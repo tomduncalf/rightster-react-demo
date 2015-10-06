@@ -1,0 +1,25 @@
+Step 6:
+http://pageflare.qa3.rightster.com http://platformplayer.qa3.rightster.com/api/v1/assembly.player.getConfig?placementId=58cc9ed3-a3fc-4c03-965b-0712fa5355b5&playerType=HTML5&hls=false
+
+Step 8: thumbnailSrc: video.images[0].uri
+
+Step 9: can't change props of child
+
+Step 11: grid: {
+  display: 'flex',
+  flexWrap: 'wrap'
+},
+
+Step 13: contentViewId: video.contentViewId
+
+Step 14:
+VideoTile:       <a href="#" onClick={this.props.onVideoClick}>
+VideoTileGrid:       <VideoTile src={video.thumbnailSrc} onVideoClick={this.props.onVideoSelected.bind(this, video)}/>
+App:       <VideoTileGrid videos={this.state.videos} onVideoSelected={this.handleVideoSelected.bind(this)}/>
+
+Step 14:
+handleVideoSelected: let response = await fetch(`http://platformplayer.qa3.rightster.com/api/v1/assembly.player.getContent?contentViewId=${video.contentViewId}&placementId=58cc9ed3-a3fc-4c03-965b-0712fa5355b5&playerType=HTML5`)
+let json = await response.json();
+this.setState({ videoUri: json.content.assets.videos[3].uri });
+
+Because we let React handle state changes, it can work out what needs redrawing and maintain state as much as possible

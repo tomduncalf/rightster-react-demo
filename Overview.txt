@@ -1,0 +1,20 @@
+Babel, Webpack, ES6, React, Radium, Flexbox
+
+Step 0 - Webpack, Babel and Hello World
+Step 1 - npm install react + ES6 import + React basics - Hello world inline
+Step 2 - React component Hello world + ES6 classes
+Step 3 - React props - pass in name
+Step 4 - React top level App component + hot loading
+Step 5 - Radium styling
+Step 6 - React lifecycle (ComponentDidMount - not retriggered on hot reload) + Fetch API (using Promises vs callback, arrow functions vs old style) (just console.log)
+Step 6a - promises to async/await (?optional=runtime)
+Step 7 - Create VideoTile and VideoTileGrid components, simple src passing in (create 3x VideoTile)
+Step 8 - Use map to extract thumbnailSrc + contentViewId
+Step 9 - React state (vs props - props are immutable to component), passing to child and console.loging
+Step 10 - Mapping over state into VideoTile components (console.log to show), render img
+Step 11 - Style grid with Flexbox and Radium
+Step 12 - Empty VideoPlayer component + click callback for VideoTile (show this is undefined)
+Step 13 - VideoTile click calls VideoTileGrid, VideoTileGrid calls App, get contentViewId in App, display
+Step 14 - Fetch videoUri (using interpolated string) and pass into videoPlayer, demo how selected video keeps playing while editing code and styles
+
+React: more code than Angular in some cases but simpler, easier to follow. React Native. Lighter weight syntax coming.
