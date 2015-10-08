@@ -1,20 +1,62 @@
-Babel, Webpack, ES6, React, Radium, Flexbox
+Introduce technologies making front end dev simpler (not necessarily less LoC but easier to understand/reason about), saner, better development experience
 
-Step 0 - Webpack, Babel and Hello World
-Step 1 - npm install react + ES6 import + React basics - Hello world inline
-Step 2 - React component Hello world + ES6 classes
-Step 3 - React props - pass in name
-Step 4 - React top level App component + hot loading
-Step 5 - Radium styling
-Step 6 - React lifecycle (ComponentDidMount - not retriggered on hot reload) + Fetch API (using Promises vs callback, arrow functions vs old style) (just console.log)
-Step 6a - promises to async/await (?optional=runtime)
+Primarily React (Facebook UI library), also ES6, Babel, Webpack, Radium, Flexbox
+
+Aim: live code a basic version of Page Flare Mosaic
+
+Step 0 - Webpack: module bundler (build tool) - simple config, plugins
+- Babel: ES6 to ES5 compiler
+- Dev server: simple server to serve assets
+- Webpack bundles JS src + dependencies into a single file, Babel converts to ES5 for browsers, dev server serves
+- Hello World
+
+Step 1 - React - Facebook’s UI library, concerned with reusable components (mainly the “V” in MVC but really a competitor to Angular etc).
+-Simple API, explicit data flow (less magic), some cool features.
+
+npm install react + ES6 import + React basics (JSX - keep logic and markup together, performance optimisations) - Hello world inline
+
+Step 2 - Components: React component Hello world + intro ES6 classes
+
+Step 3 - Passing name to HelloWorld: use HTML properties. console.log(this.props), then {}
+
+Step 4 - Create top level App component (best practice, handles inter-component communication etc) + hot loading (preserves application state, only re-renders what has changed due to VDOM and props - will see more later)
+
+Step 5 - Radium styling (keep component in one file, avoid CSS conflicts - no need for BEM etc, can treat as code).
+- Hot loaded - can see changes in real time.
+
+Step 6 - Something more interesting: React lifecycle (ComponentDidMount - console.log - not retriggered on hot reload)
+
+Step 6a: $.get vs Fetch API to get playlist (Promises, .json(), then arrow functions - console.log output)
+
+Step 6a - promises to async/await - write async code almost as if it was synchronous, pauses execution of function at await and processes next thing on stack, but remembers where it was up to
+
 Step 7 - Create VideoTile and VideoTileGrid components, simple src passing in (create 3x VideoTile)
-Step 8 - Use map to extract thumbnailSrc + contentViewId
-Step 9 - React state (vs props - props are immutable to component), passing to child and console.loging
-Step 10 - Mapping over state into VideoTile components (console.log to show), render img
-Step 11 - Style grid with Flexbox and Radium
-Step 12 - Empty VideoPlayer component + click callback for VideoTile (show this is undefined)
-Step 13 - VideoTile click calls VideoTileGrid, VideoTileGrid calls App, get contentViewId in App, display
-Step 14 - Fetch videoUri (using interpolated string) and pass into videoPlayer, demo how selected video keeps playing while editing code and styles
 
-React: more code than Angular in some cases but simpler, easier to follow. React Native. Lighter weight syntax coming.
+Step 8 - Use map to extract thumbnailSrc + contentViewId
+
+Step 9 - How do we get the videos into the VideoTileGrid once API has returned (async)?
+- Don’t need to explicitly render - instead we use React state - represents internal state of component, component can change (vs props which are immutable to component)
+- React calls render() whenever a components state or props change and re-renders affected components
+
+Step 9a - pass videos into VideoTileGrid and console.log this.props
+
+Step 10 - How do we convert these videos into VideoTiles?
+Map over props.videos into VideoTile components (console.log to show), then print out, then render img
+
+Step 11 - Style image and grid with Flexbox and Radium
+
+Step 12 - Create empty VideoPlayer component
+
+Step 12a - we want to be able to click VideoTile, when it clicks notify VideoTileGrid, then want VideoTileGrid to notify App that a video was selected
+- Components are isolated, single resposibilty
+- One way data flow - easier to reason about, test etc.
+
+Step 12b - basic onClick callback for VideoTile
+
+Step 13 - covert onClick to this.props.handleVideoClick, bind to video in VideoTileGrid, onVideoSelected for VideoTileGrid, App write contentViewId into page
+
+Step 14 - Need to fetch video getContent. Fetch videoUri (using interpolated string) and pass into VideoPlayer (don’t forget to bind this), demo how selected video keeps playing while editing code and styles
+
+React: not necessarily the least lines of code but simpler, easy to follow flow, good performance.
+Lighter weight syntax coming. Flux etc. for handling complex data flows with a single store.
+React Native - write iOS and Android apps using React.
